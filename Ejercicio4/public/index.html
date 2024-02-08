@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+</head>
+
+<body>
+    <div id="menus"></div>
+
+    <form action="/api/borrarMenu">
+        <button type="button" id="eliminar" onclick="eliminar()">Eliminar menú</button>
+    </form>
+
+    <script>
+        fetch('api/menus')
+            .then((res) => res.json)
+            .then((datos) => {
+                let salida = ""
+                datos.results.forEach(menu => {
+                    salida += `<li>${menu.numero}</li><li>${menu.primerPlato}</li>
+                    <li>${menu.postre}</li>
+                    <li>${menu.segundoPlato}</li>
+                    <li>${menu.precio}</li>
+                        <form action="/api/borrarMenu">
+    <button type="button" id="eliminar" onclick="eliminar()">Eliminar</button>
+    </form>
+                    `
+                });
+                document.getElementById('menus').innterHTML = `<ul>${salida}</ul>`
+            })
+
+        function eliminar(menu) {
+            fetch('api/borrarMenu', {
+                method: "DELETE",
+
+            })
+                .then((res) => rees.json())
+                .then((datos) => {
+                    document.getElementById('alert').innerHTML = `<h2>${datos.mensaje}</h2>`
+                })
+        }
+
+    </script>
+</body>
+
+</html>

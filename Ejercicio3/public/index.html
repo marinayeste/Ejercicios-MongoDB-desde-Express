@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Buscar</h2>
+    <form>
+
+        <input type="text" name="titulo" id="titulo">
+        <button type="button" onclick="buscar()">Buscar</button>
+    </form>
+
+    <h2>Añade tu serie:</h2>
+    <form action="/api/nuevaSerie" method="post">
+        <input type="text" name="titulo" id="titulo">
+        <input type="text" name="plataforma" id="plataforma">
+        <input type="number" name="nota" id="nota">
+        <button type="submit">Añadir</button>
+    </form>
+
+    <div id="series"></div>
+
+    <script>
+        function buscar() {
+            fetch(`api/${document.getElementById('titulo').value}`)
+                .then((res) => res.json())
+                .then((datos) => {
+                    console.log(datos)
+                })
+        }
+
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>
